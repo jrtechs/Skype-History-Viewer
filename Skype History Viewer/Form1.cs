@@ -30,7 +30,26 @@ namespace Skype_History_Viewer
             }
             else
             {
+                //displays the chat of selected user
+                String name = lstUsers.GetItemText(lstUsers.SelectedItem);
+                String display = "";
 
+                foreach (Chat oChat in skype.Chats)
+                {
+
+                    foreach (ChatMessage oMessage in oChat.Messages)
+                    {
+                        if(oMessage.Sender.FullName.Equals(name))
+                        {
+                            if (chTime.Checked) display = oMessage.Timestamp.ToString() + "  ";
+                            if (chUser.Checked) display += oMessage.Sender.FullName + "   ";
+                            display += oMessage.Body;
+                            lstChat.Items.Add(display);
+                            display = "";
+                        }
+                        
+                    }
+                }
             }
         }
 
