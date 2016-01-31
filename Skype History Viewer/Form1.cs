@@ -51,6 +51,15 @@ namespace Skype_History_Viewer
             {
                 //attaches the program to skype
                 skype.Attach();
+
+                //adds all users to lstUsers
+                if(!connected)
+                {
+                    foreach (User user in skype.Friends)
+                    {
+                        lstUsers.Items.Add(user.FullName);
+                    }
+                }
                 return true;
             }
             catch
@@ -81,6 +90,11 @@ namespace Skype_History_Viewer
             {
 
             }
+        }
+
+        private void cmdClear_Click(object sender, EventArgs e)
+        {
+            lstChat.Items.Clear();
         }
     }
 }
