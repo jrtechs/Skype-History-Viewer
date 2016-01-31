@@ -62,6 +62,7 @@
             this.cmdExportAll.TabIndex = 2;
             this.cmdExportAll.Text = "Export All To Text File";
             this.cmdExportAll.UseVisualStyleBackColor = true;
+            this.cmdExportAll.Click += new System.EventHandler(this.cmdExportAll_Click);
             // 
             // cmdExport
             // 
@@ -71,6 +72,7 @@
             this.cmdExport.TabIndex = 3;
             this.cmdExport.Text = "Export Selected to Text File";
             this.cmdExport.UseVisualStyleBackColor = true;
+            this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
             // 
             // cmdAdd
             // 
@@ -80,6 +82,7 @@
             this.cmdAdd.TabIndex = 4;
             this.cmdAdd.Text = "View History for Selected User";
             this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // cmdClear
             // 
