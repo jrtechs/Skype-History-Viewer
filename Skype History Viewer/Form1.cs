@@ -99,7 +99,28 @@ namespace Skype_History_Viewer
             }
             else
             {
+                //exports selected users skype history
+                String name = lstUsers.GetItemText(lstUsers.SelectedItem);
+                System.IO.StreamWriter file = new System.IO.StreamWriter("Skype"+name+"History.txt");
+                
+                String line = "";
+                foreach (Chat oChat in skype.Chats)
+                {
+                    foreach (ChatMessage oMessage in oChat.Messages)
+                    {
+                        if(oMessage.Sender.FullName.Equals(name))
+                        {
+                            if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
+                            if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
+                            line += oMessage.Body;
+                            file.WriteLine(line);
+                            line = "";
+                        }
+                            
+                    }
+                }
 
+                file.Close();
             }
         }
 
