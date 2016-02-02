@@ -101,7 +101,7 @@ namespace Skype_History_Viewer
             {
                 //exports selected users skype history
                 String name = lstUsers.GetItemText(lstUsers.SelectedItem);
-                System.IO.StreamWriter file = new System.IO.StreamWriter("Skype"+name+"History.txt");
+                System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog("Skype_History_" + name + ".txt"));
                 
                 String line = "";
                 foreach (Chat oChat in skype.Chats)
@@ -121,6 +121,7 @@ namespace Skype_History_Viewer
                 }
 
                 file.Close();
+                MessageBox.Show("Save Complete");
             }
         }
 
@@ -133,7 +134,7 @@ namespace Skype_History_Viewer
             else
             {
                 //exports all skype history to a text file
-                System.IO.StreamWriter file = new System.IO.StreamWriter("SkypeHistory.txt");
+                System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog("SkypeHistory.txt"));
                 String line = "";
                 foreach (Chat oChat in skype.Chats)
                 {
@@ -148,12 +149,26 @@ namespace Skype_History_Viewer
                 }
 
                 file.Close();
+                MessageBox.Show("Save Complete");
             }
         }
 
         private void cmdClear_Click(object sender, EventArgs e)
         {
             lstChat.Items.Clear();
+        }
+        private String saveFileDialog(String text)
+        {
+            String path = "";
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.FileName = text;
+            saveFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if(saveFile.ShowDialog() == DialogResult.OK)
+            {
+                path = saveFile.FileName;
+            }
+
+            return path;
         }
     }
 }
