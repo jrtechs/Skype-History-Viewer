@@ -99,29 +99,30 @@ namespace Skype_History_Viewer
             }
             else
             {
-                //exports selected users skype history
                 String name = lstUsers.GetItemText(lstUsers.SelectedItem);
-                System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog("Skype_History_" + name + ".txt"));
-                
-                String line = "";
-                foreach (Chat oChat in skype.Chats)
+                String path = saveFileDialog("Skype_History_" + name + ".txt");
+                if(path != null)
                 {
-                    foreach (ChatMessage oMessage in oChat.Messages)
+                    System.IO.StreamWriter file = new System.IO.StreamWriter(path);
+                
+                    String line = "";
+                    foreach (Chat oChat in skype.Chats)
                     {
-                        if(oMessage.Sender.FullName.Equals(name))
+                        foreach (ChatMessage oMessage in oChat.Messages)
                         {
-                            if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
-                            if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
-                            line += oMessage.Body;
-                            file.WriteLine(line);
-                            line = "";
+                            if(oMessage.Sender.FullName.Equals(name))
+                            {
+                                if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
+                                if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
+                                line += oMessage.Body;
+                                file.WriteLine(line);
+                                line = "";
+                            }
                         }
-                            
                     }
+                    file.Close();
+                    MessageBox.Show("Save Complete");
                 }
-
-                file.Close();
-                MessageBox.Show("Save Complete");
             }
         }
 
@@ -133,23 +134,27 @@ namespace Skype_History_Viewer
             }
             else
             {
-                //exports all skype history to a text file
-                System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog("SkypeHistory.txt"));
-                String line = "";
-                foreach (Chat oChat in skype.Chats)
+                String path = saveFileDialog("SkypeHistory.txt");
+                if(path != null) //makes sure that user did not click on cancle on save file dialog
                 {
-                    foreach (ChatMessage oMessage in oChat.Messages)
-                    {                    
-                        if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
-                        if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
-                        line += oMessage.Body;
-                        file.WriteLine(line);
-                        line = "";
-                    }
-                }
+                    System.IO.StreamWriter file = new System.IO.StreamWriter(path);
+                    String line = "";
 
-                file.Close();
-                MessageBox.Show("Save Complete");
+                    //exports all skype history to a text file
+                    foreach (Chat oChat in skype.Chats)
+                    {
+                        foreach (ChatMessage oMessage in oChat.Messages)
+                        {                    
+                            if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
+                            if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
+                            line += oMessage.Body;
+                            file.WriteLine(line);
+                            line = "";
+                        }
+                    }
+                    file.Close();
+                    MessageBox.Show("Save Complete");
+                }
             }
         }
 
@@ -159,16 +164,14 @@ namespace Skype_History_Viewer
         }
         private String saveFileDialog(String text)
         {
-            String path = "";
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.FileName = text;
             saveFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             if(saveFile.ShowDialog() == DialogResult.OK)
             {
-                path = saveFile.FileName;
+                return saveFile.FileName;
             }
-
-            return path;
+            return null;
         }
     }
 }
