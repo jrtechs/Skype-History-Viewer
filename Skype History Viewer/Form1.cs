@@ -41,8 +41,12 @@ namespace Skype_History_Viewer
                     {
                         if(oMessage.Sender.FullName.Equals(name))
                         {
-                            if (chTime.Checked) display = oMessage.Timestamp.ToString() + "  ";
-                            if (chUser.Checked) display += oMessage.Sender.FullName + "   ";
+                            if (chTime.Checked) display = oMessage.Timestamp.ToString() + "   ";
+                            if (chUser.Checked)
+                            {
+                                display += oMessage.Sender.FullName + "   ";
+                            }
+                            
                             display += oMessage.Body;
                             lstChat.Items.Add(display);
                             display = "";
@@ -107,7 +111,22 @@ namespace Skype_History_Viewer
             }
             else
             {
+                //exports all skype history to a text file
+                System.IO.StreamWriter file = new System.IO.StreamWriter("SkypeHistory.txt");
+                String line = "";
+                foreach (Chat oChat in skype.Chats)
+                {
+                    foreach (ChatMessage oMessage in oChat.Messages)
+                    {                    
+                        if (chTime.Checked) line = oMessage.Timestamp.ToString() + "  ";
+                        if (chUser.Checked) line += oMessage.Sender.FullName + "   ";
+                        line += oMessage.Body;
+                        file.WriteLine(line);
+                        line = "";
+                    }
+                }
 
+                file.Close();
             }
         }
 
