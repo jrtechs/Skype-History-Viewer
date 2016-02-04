@@ -51,7 +51,7 @@
             this.lstChat.FormattingEnabled = true;
             this.lstChat.Location = new System.Drawing.Point(227, 14);
             this.lstChat.Name = "lstChat";
-            this.lstChat.Size = new System.Drawing.Size(756, 615);
+            this.lstChat.Size = new System.Drawing.Size(969, 615);
             this.lstChat.TabIndex = 1;
             // 
             // cmdExportAll
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 646);
+            this.ClientSize = new System.Drawing.Size(1208, 640);
             this.Controls.Add(this.chUser);
             this.Controls.Add(this.chTime);
             this.Controls.Add(this.cmdClear);
