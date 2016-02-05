@@ -36,6 +36,7 @@
             this.cmdClear = new System.Windows.Forms.Button();
             this.chTime = new System.Windows.Forms.CheckBox();
             this.chUser = new System.Windows.Forms.CheckBox();
+            this.chTitle = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lstUsers
@@ -97,7 +98,7 @@
             // chTime
             // 
             this.chTime.AutoSize = true;
-            this.chTime.Location = new System.Drawing.Point(13, 297);
+            this.chTime.Location = new System.Drawing.Point(12, 285);
             this.chTime.Name = "chTime";
             this.chTime.Size = new System.Drawing.Size(129, 17);
             this.chTime.TabIndex = 6;
@@ -107,18 +108,29 @@
             // chUser
             // 
             this.chUser.AutoSize = true;
-            this.chUser.Location = new System.Drawing.Point(13, 320);
+            this.chUser.Location = new System.Drawing.Point(12, 308);
             this.chUser.Name = "chUser";
             this.chUser.Size = new System.Drawing.Size(208, 17);
             this.chUser.TabIndex = 7;
             this.chUser.Text = "Include a User Tag Infront of Message";
             this.chUser.UseVisualStyleBackColor = true;
             // 
+            // chTitle
+            // 
+            this.chTitle.AutoSize = true;
+            this.chTitle.Location = new System.Drawing.Point(12, 331);
+            this.chTitle.Name = "chTitle";
+            this.chTitle.Size = new System.Drawing.Size(149, 17);
+            this.chTitle.TabIndex = 8;
+            this.chTitle.Text = "Include Conversation Title";
+            this.chTitle.UseVisualStyleBackColor = true;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 640);
+            this.Controls.Add(this.chTitle);
             this.Controls.Add(this.chUser);
             this.Controls.Add(this.chTime);
             this.Controls.Add(this.cmdClear);
@@ -144,6 +156,7 @@
         private System.Windows.Forms.Button cmdClear;
         private System.Windows.Forms.CheckBox chTime;
         private System.Windows.Forms.CheckBox chUser;
+        private System.Windows.Forms.CheckBox chTitle;
     }
 }
 
